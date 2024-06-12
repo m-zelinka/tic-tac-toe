@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Board from "./components/Board";
+import OIcon from "./components/OIcon";
 import RestartButton from "./components/RestartButton";
 import Status from "./components/Status";
 import TimeTravel from "./components/TimeTravel";
+import XIcon from "./components/XIcon";
 
 function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -29,6 +31,7 @@ function Game() {
   return (
     <main className="flex min-h-full flex-col justify-center bg-gray-100 px-6 py-10 lg:px-8 dark:bg-gray-900">
       <div className="mx-auto flex w-full max-w-md items-center justify-between">
+        <Logo />
         <Status xIsNext={xIsNext} squares={currentSquares} />
         <RestartButton onClick={handleRestart} />
       </div>
@@ -36,7 +39,7 @@ function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="mx-auto mt-10 w-full max-w-md">
-        <details className="group">
+        <details open className="group">
           <summary className="select-none text-sm/6 font-semibold text-gray-900 dark:text-white">
             View history
           </summary>
@@ -54,3 +57,12 @@ function Game() {
 }
 
 export default Game;
+
+function Logo() {
+  return (
+    <div className="flex gap-1">
+      <XIcon className="h-6 w-auto fill-teal-400" />
+      <OIcon className="h-6 w-auto fill-amber-400" />
+    </div>
+  );
+}

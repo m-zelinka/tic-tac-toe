@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { calculateWinner } from "../utils";
+import OIcon from "./OIcon";
+import XIcon from "./XIcon";
 
 function Status({ xIsNext, squares }) {
   const winner = calculateWinner(squares);
@@ -9,14 +11,22 @@ function Status({ xIsNext, squares }) {
       {winner.player ? (
         <>
           Winner:
-          {winner.player}
+          {winner.player === "X" ? (
+            <XIcon className="size-4 fill-teal-400" />
+          ) : (
+            <OIcon className="size-4 fill-amber-400" />
+          )}
         </>
       ) : squares.every(Boolean) ? (
         "Scratch: Cat's game"
       ) : (
         <>
           Next player:
-          {xIsNext ? "X" : "O"}
+          {xIsNext ? (
+            <XIcon className="size-4 fill-teal-400" />
+          ) : (
+            <OIcon className="size-4 fill-amber-400" />
+          )}
         </>
       )}
     </span>

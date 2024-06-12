@@ -9,12 +9,14 @@ function Board({ xIsNext, squares, onPlay }) {
   function handleSquareClick(index) {
     const nextSquares = squares.slice();
     nextSquares[index] = xIsNext ? "X" : "O";
+
     onPlay(nextSquares);
   }
 
   return (
     <div className="grid grid-cols-3 gap-5">
       {squares.map((square, squareIndex) => {
+        const highlighted = winner.lines?.includes(squareIndex) ?? false;
         const filled = square !== null;
         const disabled = filled || !canPlayGame;
 
@@ -22,7 +24,9 @@ function Board({ xIsNext, squares, onPlay }) {
           <Square
             key={squareIndex}
             value={square}
+            xIsNext={xIsNext}
             disabled={disabled}
+            highlighted={highlighted}
             onClick={() => handleSquareClick(squareIndex)}
           />
         );
