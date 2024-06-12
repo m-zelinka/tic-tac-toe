@@ -16,7 +16,7 @@ function Game() {
     setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(nextMove) {
+  function handleJump(nextMove) {
     setCurrentMove(nextMove);
   }
 
@@ -37,7 +37,7 @@ function Game() {
             <TimeTravel
               history={history}
               currentMove={currentMove}
-              onJump={jumpTo}
+              onJump={handleJump}
             />
           </div>
         </details>
