@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Board from "./components/Board";
+import RestartButton from "./components/RestartButton";
 import Status from "./components/Status";
 import TimeTravel from "./components/TimeTravel";
 
@@ -20,10 +21,16 @@ function Game() {
     setCurrentMove(nextMove);
   }
 
+  function handleRestart() {
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
+  }
+
   return (
     <main className="flex min-h-full flex-col justify-center bg-gray-100 px-6 py-10 lg:px-8 dark:bg-gray-900">
       <div className="mx-auto flex w-full max-w-md items-center justify-between">
         <Status xIsNext={xIsNext} squares={currentSquares} />
+        <RestartButton onClick={handleRestart} />
       </div>
       <div className="mx-auto mt-10 w-full max-w-md">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
