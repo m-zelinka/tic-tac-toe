@@ -29,28 +29,48 @@ function Game() {
   }
 
   return (
-    <main className="flex min-h-full flex-col justify-center bg-gray-100 px-6 py-10 lg:px-8 dark:bg-gray-900">
-      <div className="mx-auto flex w-full max-w-md items-center justify-between">
-        <Logo />
-        <Status xIsNext={xIsNext} squares={currentSquares} />
-        <RestartButton onClick={handleRestart} />
-      </div>
-      <div className="mx-auto mt-10 w-full max-w-md">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-      </div>
-      <div className="mx-auto mt-10 w-full max-w-md">
-        <details open className="group">
-          <summary className="select-none text-sm/6 font-semibold text-gray-900 dark:text-white">
-            View history
-          </summary>
-          <div className="mt-3 rounded-xl bg-white px-4 py-5 shadow-lg ring-1 ring-black/5 sm:p-6 dark:bg-gray-950 dark:ring-white/10">
-            <TimeTravel
-              history={history}
-              currentMove={currentMove}
-              onJump={handleJump}
+    <main className="flex min-h-full flex-col justify-center bg-gray-50 px-6 py-10 lg:px-8 dark:bg-gray-900">
+      <div className="mx-auto mt-10 w-full max-w-md md:max-w-3xl">
+        <div className="grid grid-cols-1 grid-rows-1 items-start gap-8 md:grid-cols-5">
+          <div className="flex items-center justify-between md:col-span-3 md:col-start-1 md:row-end-1">
+            <Logo />
+            <Status xIsNext={xIsNext} squares={currentSquares} />
+            <RestartButton onClick={handleRestart} />
+          </div>
+          <div className="md:col-span-3 md:col-start-1">
+            <Board
+              xIsNext={xIsNext}
+              squares={currentSquares}
+              onPlay={handlePlay}
             />
           </div>
-        </details>
+          <div className="md:col-span-2 md:row-span-2 md:row-end-2 md:h-full">
+            <details className="group md:hidden">
+              <summary className="select-none text-sm/6 font-semibold text-gray-900 dark:text-white">
+                History
+              </summary>
+              <div className="mt-3 h-64 overflow-y-auto rounded-xl bg-white px-4 py-5 shadow-sm ring-1 ring-gray-900/5 sm:p-6 dark:bg-gray-950 dark:ring-white/10">
+                <TimeTravel
+                  history={history}
+                  currentMove={currentMove}
+                  onJump={handleJump}
+                />
+              </div>
+            </details>
+            <div className="group flex h-full flex-col max-md:hidden">
+              <div className="pt-1 text-sm/6 font-semibold text-gray-900 dark:text-white">
+                History
+              </div>
+              <div className="mt-3 flex-1 overflow-y-auto rounded-xl bg-white px-4 py-5 shadow-sm ring-1 ring-gray-900/5 sm:p-6 dark:bg-gray-950 dark:ring-white/10">
+                <TimeTravel
+                  history={history}
+                  currentMove={currentMove}
+                  onJump={handleJump}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );

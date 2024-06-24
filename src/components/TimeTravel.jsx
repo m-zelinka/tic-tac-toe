@@ -23,7 +23,7 @@ function TimeTravel({ history, currentMove, onJump }) {
           </div>
           <p className="flex-auto py-0.5 text-xs/5">
             {currentMove === move ? (
-              <span className="text-gray-500">
+              <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
                 {move > 0
                   ? `You are at move #${move}`
                   : "You are at game start"}
